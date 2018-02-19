@@ -64,5 +64,5 @@ all_lights_custom:
   icon: mdi:lightbulb-on
   entities:
     - light.bedroom
-    - light.hall_light
+    - switch.przedpokoj
     - switch.salon

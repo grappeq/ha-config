@@ -6,7 +6,7 @@
     to: 'on'
   action:
     service: light.turn_on
-    entity_id: light.hall_light
+    entity_id: switch.przedpokoj
 - alias: Zapal światło w przedpokoju po otwarciu drzwi wejściowych
   trigger:
     platform: state
@@ -15,7 +15,7 @@
     to: 'on'
   action:
     service: light.turn_on
-    entity_id: light.hall_light
+    entity_id: switch.przedpokoj
 - alias: Zgaś światło w przedpokoju, jeśli nie ma ruchu od 2 minut
   trigger:
     platform: state
@@ -26,7 +26,7 @@
       minutes: 2
   action:
     service: light.turn_off
-    entity_id: light.hall_light
+    entity_id: switch.przedpokoj
 - alias: Po pojedynczym kliknięciu na przycisk zgaś/zaświeć światło w sypialni
   trigger:
     platform: event
