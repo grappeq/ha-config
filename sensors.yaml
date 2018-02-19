@@ -1,0 +1,56 @@
+- platform: mqtt
+  state_topic: 'home/growbox'
+  name: growbox_temperature
+  unit_of_measurement: '°C'
+  value_template: '{{ value_json["temperature"] | round(2) }}'
+
+- platform: mqtt
+  state_topic: 'home/growbox'
+  name: growbox_humidity
+  unit_of_measurement: '%'
+  value_template: '{{ value_json["humidity"] | round(0) }}'
+
+- platform: mqtt
+  state_topic: "home/growbox"
+  name: growbox_door
+  payload_on: "open"
+  payload_off: "closed"
+  device_class: opening
+  value_template: '{{ value_json["door"] }}'
+
+- platform: mqtt
+  state_topic: "home/balcony/weather_station/sensor_data"
+  name: weather_station_temperature
+  unit_of_measurement: '°C'
+  value_template: '{{ value_json["temperature"] | round(2) }}'
+
+- platform: mqtt
+  state_topic: "home/balcony/weather_station/sensor_data"
+  name: weather_station_humidity
+  unit_of_measurement: '%'
+  value_template: '{{ value_json["humidity"] | round(0) }}'
+
+- platform: mqtt
+  state_topic: "home/balcony/weather_station/sensor_data"
+  name: weather_station_battery
+  unit_of_measurement: '%'
+  value_template: '{{ (value_json["battery"]/10) | round(0) }}'
+
+- platform: mqtt
+  state_topic: "home/balcony/weather_station/sensor_data"
+  name: weather_station_pressure
+  unit_of_measurement: 'hPa'
+  value_template: '{{ (value_json["pressure"]/100) | round(0) }}'
+
+- platform: yr
+
+- platform: miflora
+  mac: 'C4:7C:8D:65:CB:95'
+  name: "Tymianek"
+  force_update: false
+  monitored_conditions:
+    - temperature
+    - moisture
+    - light
+    - conductivity
+    - battery

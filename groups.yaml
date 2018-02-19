@@ -1,0 +1,68 @@
+default_view:
+  name: Domek
+  view: yes
+  entities:
+   - group.all_lights_custom
+   - group.indoor
+   - group.weather_station
+   - group.all_switches
+
+indoor:
+  name: Wnętrze
+  icon: mdi:home
+  entities:
+    - sensor.temperature_158d0001dfdb05
+    - sensor.humidity_158d0001dfdb05
+    - sensor.illumination_286c07fa36d0
+
+weather_station:
+  name: Stacja pogodowa
+  icon: mdi:weather-partlycloudy
+  entities:
+    - sensor.weather_station_pressure  
+    - sensor.weather_station_temperature
+    - sensor.weather_station_humidity
+    - sensor.weather_station_battery
+
+growbox_general:
+  name: Ogólne warunki
+  icon: mdi:pine-tree-box
+  entities:
+    - sensor.growbox_temperature
+    - sensor.growbox_humidity
+    - sensor.growbox_door
+
+growbox:
+  name: Growbox
+  view: yes
+  entities:
+    - group.growbox_general
+    - plant.growbox_plant
+
+other_sensors:
+  name: "Inne czujniki"
+  entities:
+   - binary_sensor.motion_sensor_158d0001dc14af
+   - binary_sensor.door_window_sensor_158d0001d85dec
+   - binary_sensor.switch_158d00016bdfb4
+   - sensor.yr_symbol
+   - sun.sun
+    
+other:
+  name: Inne
+  view: yes
+  entities:
+   - group.all_scenes
+   - group.inputs
+   - group.all_automations
+   - group.all_scripts
+   - group.all_sensors
+   - group.other_sensors
+
+all_lights_custom:
+  name: Światła
+  icon: mdi:lightbulb-on
+  entities:
+    - light.bedroom
+    - light.hall_light
+    - switch.salon

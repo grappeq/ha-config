@@ -1,0 +1,162 @@
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 202
+  unit_system: metric
+  time_zone: Europe/Warsaw
+  customize:
+    light.hall_light:
+      friendly_name: "Przedpokój"
+    light.gateway_light_286c07fa36d0:
+      friendly_name: "Xiaomi Gateway"
+    binary_sensor.door_window_sensor_158d0001d85dec:
+      friendly_name: "Drzwi wejściowe"
+    binary_sensor.motion_sensor_158d0001dc14af:
+      friendly_name: "Czujnik ruchu w przedpokoju"
+    binary_sensor.switch_158d00016bdfb4:
+      friendly_name: "Przycisk w sypialni"
+    light.bedroom:
+      friendly_name: "Sypialnia"
+    group.all_automations:
+      hidden: false
+    group.all_scripts:
+      hidden: false
+    group.all_lights:
+      hidden: false
+      friendly_name: "Światła"
+    group.all_switches:
+      hidden: false
+      friendly_name: "Przełączniki"
+    plant.growbox_plant:
+      friendly_name: "Roślinka"
+  customize_glob:
+    "sensor.growbox_*":
+      icon: mdi:tree
+    "sensor.weather_station_*":
+      icon: mdi:weather-partlycloudy
+    "sensor.*temperature*":
+      friendly_name: Temperatura
+    "sensor.*humidity*":
+      friendly_name: Wilgotność
+    "sensor.*moisture*":
+      friendly_name: "Wilgotność ziemi"
+    "sensor.*conductivity*":
+      friendly_name: "Przewodnictwo elektryczne"
+    "sensor.*_pressure":
+      friendly_name: Ciśnienie
+    "sensor.*illumination*":
+      friendly_name: "Poziom oświetlenia"
+    "sensor.*light_intensity*":
+      friendly_name: "Poziom oświetlenia"
+    "sensor.*battery*":
+      friendly_name: Poziom baterii
+    "sensor.*_door":
+      friendly_name: Drzwi
+
+# Enables the frontend
+frontend:
+
+panel_iframe:
+
+# Enables configuration UI
+config:
+
+http:
+
+# Checks for available updates
+updater:
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Text to speech
+tts:
+  platform: google
+
+group: !include groups.yaml
+
+mqtt:
+
+light:
+  - platform: yeelight
+    devices:
+      192.168.1.90:
+        name: bedroom
+        use_music_mode: True
+  - platform: mqtt
+    name: hall_light
+    state_topic: "home/hall/light/stat"
+    command_topic: "home/hall/light"
+    qos: 0
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
+
+sensor: !include sensors.yaml
+
+#device_tracker:
+#  - platform: netgear
+#    host: 192.168.1.1
+#    username: admin
+#    password: 
+#    interval_seconds: 10
+#    consider_home: 180
+#    track_new_devices: yes
+
+logger:
+  default: warning
+  logs:
+    homeassistant.components.mqtt: debug
+
+recorder:
+  purge_interval: 2
+  purge_keep_days: 40
+
+automation: !include automations.yaml
+
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: !secret xiaomi_aqara_key
+
+switch:
+  - platform: broadlink
+    host: 192.168.1.106
+    mac: '34:EA:34:42:F1:E3'
+#    type: 'rm2_pro_plus'
+    switches:
+      ilife_vacuum:
+        friendly_name: "Odkurzacz Ilife"
+        command_on: !secret ilife_vacuum_command_on
+        command_off: !secret ilife_vacuum_command_off
+      living_room_light:
+        friendly_name: "Salon"
+        command_on: !secret living_room_light_command_on
+        command_off: !secret living_room_light_command_off
+      hall_light:
+        friendly_name: "Przedpokój"
+        command_on: !secret hall_light_command_on
+        command_off: !secret hall_light_command_off
+
+plant:
+  growbox_plant:
+    sensors:
+      moisture: sensor.tymianek_moisture
+      battery: sensor.tymianek_battery
+      temperature: sensor.tymianek_temperature
+      conductivity: sensor.tymianek_conductivity
+      brightness: sensor.tymianek_light_intensity
+    min_moisture: 35
