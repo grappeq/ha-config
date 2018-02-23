@@ -1,0 +1,25 @@
+- platform: broadlink
+  host: 192.168.1.106
+  mac: '34:EA:34:42:F1:E3'
+  switches:
+    ilife_vacuum:
+      friendly_name: "Odkurzacz Ilife"
+      command_on: !secret ilife_vacuum_command_on
+      command_off: !secret ilife_vacuum_command_off
+    living_room_light:
+      command_on: !secret living_room_light_command_on
+      command_off: !secret living_room_light_command_off
+    hall_light:
+      command_on: !secret hall_light_command_on
+      command_off: !secret hall_light_command_off
+    bathroom_light:
+      command_on: !secret bathroom_light_command_on
+      command_off: !secret bathroom_light_command_off
+    dining_table_light:
+      command_on: !secret dining_table_light_command_on
+      command_off: !secret dining_table_light_command_off
+- platform: deluge
+  name: torrents
+  host: 127.0.0.1
+  username: !secret deluge_username
+  password: !secret deluge_password

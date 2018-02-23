@@ -16,7 +16,7 @@ indoor:
     - sensor.illumination_286c07fa36d0
 
 weather_station:
-  name: Stacja pogodowa
+  name: Na zewnątrz
   icon: mdi:weather-partlycloudy
   entities:
     - sensor.weather_station_pressure  
@@ -52,6 +52,7 @@ other:
   name: Inne
   view: yes
   entities:
+   - group.torrents
    - group.all_scenes
    - group.inputs
    - group.all_automations
@@ -64,5 +65,16 @@ all_lights_custom:
   icon: mdi:lightbulb-on
   entities:
     - light.bedroom
-    - switch.przedpokoj
-    - switch.salon
+    - switch.hall_light
+    - switch.living_room_light
+    - switch.bathroom_light
+    - switch.dining_table_light
+    
+torrents:
+  name: Torrenty
+  icon: mdi:download-network
+  entities:
+    - switch.torrents
+    - sensor.torrents_down_speed
+    - sensor.torrents_status
+    - sensor.torrents_up_speed

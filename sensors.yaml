@@ -46,7 +46,7 @@
 
 - platform: miflora
   mac: 'C4:7C:8D:65:CB:95'
-  name: "Tymianek"
+  name: growbox_plant
   force_update: false
   monitored_conditions:
     - temperature
@@ -54,3 +54,13 @@
     - light
     - conductivity
     - battery
+    
+- platform: deluge
+  host: 127.0.0.1
+  name: torrents
+  username: !secret deluge_username
+  password: !secret deluge_password
+  monitored_variables:
+    - 'current_status'
+    - 'download_speed'
+    - 'upload_speed'

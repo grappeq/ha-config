@@ -30,6 +30,24 @@ homeassistant:
       friendly_name: "Przełączniki"
     plant.growbox_plant:
       friendly_name: "Roślinka"
+    sensor.torrents_down_speed:
+      friendly_name: "Prędkość pobierania"
+    sensor.torrents_up_speed:
+      friendly_name: "Prędkość wysyłania"
+    sensor.torrents_status:
+      friendly_name: "Status"
+    switch.torrents:
+      friendly_name: "Pobieranie/wysyłanie"
+    switch.hall_light:
+      friendly_name: "Przedpokój"
+    switch.living_room_light:
+      friendly_name: "Salon"
+    switch.bathroom_light:
+      friendly_name: "Łazienka"
+    switch.dining_table_light:
+      friendly_name: "Stół"
+    switch.ilife_vacuum:
+      friendly_name: "Odkurzacz Ilife"
   customize_glob:
     "sensor.growbox_*":
       icon: mdi:tree
@@ -63,6 +81,9 @@ panel_iframe:
 config:
 
 http:
+  api_password: !secret api_password
+  server_host: 127.0.0.1
+  base_url: !secret external_url
 
 # Checks for available updates
 updater:
@@ -115,30 +136,14 @@ xiaomi_aqara:
   gateways:
     - key: !secret xiaomi_aqara_key
 
-switch:
-  - platform: broadlink
-    host: 192.168.1.106
-    mac: '34:EA:34:42:F1:E3'
-    switches:
-      ilife_vacuum:
-        friendly_name: "Odkurzacz Ilife"
-        command_on: !secret ilife_vacuum_command_on
-        command_off: !secret ilife_vacuum_command_off
-      living_room_light:
-        friendly_name: "Salon"
-        command_on: !secret living_room_light_command_on
-        command_off: !secret living_room_light_command_off
-      hall_light:
-        friendly_name: "Przedpokój"
-        command_on: !secret hall_light_command_on
-        command_off: !secret hall_light_command_off
+switch: !include switches.yaml
 
 plant:
   growbox_plant:
     sensors:
-      moisture: sensor.tymianek_moisture
-      battery: sensor.tymianek_battery
-      temperature: sensor.tymianek_temperature
-      conductivity: sensor.tymianek_conductivity
-      brightness: sensor.tymianek_light_intensity
+      moisture: sensor.growbox_plant_moisture
+      battery: sensor.growbox_plant_battery
+      temperature: sensor.growbox_plant_temperature
+      conductivity: sensor.growbox_plant_conductivity
+      brightness: sensor.growbox_plant_light_intensity
     min_moisture: 35
