@@ -74,7 +74,6 @@ torrents:
   name: Torrenty
   icon: mdi:download-network
   entities:
-    - switch.torrents
     - sensor.torrents_down_speed
     - sensor.torrents_status
     - sensor.torrents_up_speed

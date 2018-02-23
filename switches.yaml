@@ -18,8 +18,3 @@
     dining_table_light:
       command_on: !secret dining_table_light_command_on
       command_off: !secret dining_table_light_command_off
-- platform: deluge
-  name: torrents
-  host: 127.0.0.1
-  username: !secret deluge_username
-  password: !secret deluge_password

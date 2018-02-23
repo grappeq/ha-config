@@ -36,8 +36,6 @@ homeassistant:
       friendly_name: "Prędkość wysyłania"
     sensor.torrents_status:
       friendly_name: "Status"
-    switch.torrents:
-      friendly_name: "Pobieranie/wysyłanie"
     switch.hall_light:
       friendly_name: "Przedpokój"
     switch.living_room_light:
