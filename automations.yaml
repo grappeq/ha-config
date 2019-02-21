@@ -6,7 +6,7 @@
     to: 'on'
   action:
     service: switch.turn_on
-    entity_id: switch.przedpokoj
+    entity_id: switch.hall_light
 - alias: Zapal światło w przedpokoju po otwarciu drzwi wejściowych
   trigger:
     platform: state
@@ -15,7 +15,7 @@
     to: 'on'
   action:
     service: switch.turn_on
-    entity_id: switch.przedpokoj
+    entity_id: switch.hall_light
 - alias: Zgaś światło w przedpokoju, jeśli nie ma ruchu od 2 minut
   trigger:
     platform: state
@@ -26,7 +26,7 @@
       minutes: 2
   action:
     service: switch.turn_off
-    entity_id: switch.przedpokoj
+    entity_id: switch.hall_light
 - alias: Po pojedynczym kliknięciu na przycisk zgaś/zaświeć światło w sypialni
   trigger:
     platform: event
@@ -44,6 +44,19 @@
     event_data:
       entity_id: binary_sensor.switch_158d00016bdfb4
       click_type: long_click_press
+  action:
+    - service: switch.turn_off
+      entity_id: group.all_lights_custom
+    - service: light.turn_off
+      entity_id: group.all_lights_custom
+- alias: Zgaś wszystkie światła jeśli przez 3 godziny nie ma ruchu w przedpokoju
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001dc14af
+    from: 'on'
+    to: 'off'
+    for:
+      hours: 3
   action:
     - service: switch.turn_off
       entity_id: group.all_lights_custom

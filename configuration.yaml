@@ -12,6 +12,7 @@ homeassistant:
       friendly_name: "Xiaomi Gateway"
     binary_sensor.door_window_sensor_158d0001d85dec:
       friendly_name: "Drzwi wejściowe"
+      icon: mdi:door
     binary_sensor.motion_sensor_158d0001dc14af:
       friendly_name: "Czujnik ruchu w przedpokoju"
     binary_sensor.switch_158d00016bdfb4:
@@ -53,22 +54,28 @@ homeassistant:
       icon: mdi:weather-partlycloudy
     "sensor.*temperature*":
       friendly_name: Temperatura
+      icon: mdi:temperature-celsius
     "sensor.*humidity*":
       friendly_name: Wilgotność
+      icon: mdi:water-percent
     "sensor.*moisture*":
       friendly_name: "Wilgotność ziemi"
+      icon: mdi:water-percent
     "sensor.*conductivity*":
       friendly_name: "Przewodnictwo elektryczne"
     "sensor.*_pressure":
       friendly_name: Ciśnienie
     "sensor.*illumination*":
       friendly_name: "Poziom oświetlenia"
+      icon: mdi:white-balance-sunny
     "sensor.*light_intensity*":
       friendly_name: "Poziom oświetlenia"
+      icon: mdi:white-balance-sunny
     "sensor.*battery*":
       friendly_name: Poziom baterii
     "sensor.*_door":
       friendly_name: Drzwi
+      icon: mdi:door
 
 # Enables the frontend
 frontend:
@@ -112,7 +119,7 @@ mqtt:
 light:
   - platform: yeelight
     devices:
-      192.168.1.90:
+      192.168.1.104:
         name: bedroom
         use_music_mode: True
 
@@ -130,7 +137,7 @@ recorder:
 automation: !include automations.yaml
 
 xiaomi_aqara:
-  discovery_retry: 5
+  discovery_retry: 10
   gateways:
     - key: !secret xiaomi_aqara_key
 
