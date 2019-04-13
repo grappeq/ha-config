@@ -86,9 +86,6 @@ panel_iframe:
 config:
 
 http:
-  api_password: !secret api_password
-  server_host: 127.0.0.1
-  base_url: !secret external_url
 
 # Checks for available updates
 updater:
@@ -119,11 +116,12 @@ mqtt:
 light:
   - platform: yeelight
     devices:
-      192.168.1.104:
+      192.168.1.20:
         name: bedroom
         use_music_mode: True
 
 sensor: !include sensors.yaml
+binary_sensor: !include binary_sensors.yaml
 
 logger:
   default: warning

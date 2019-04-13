@@ -52,7 +52,6 @@ other:
   name: Inne
   view: yes
   entities:
-   - group.torrents
    - group.all_scenes
    - group.inputs
    - group.all_automations
@@ -70,11 +69,3 @@ all_lights_custom:
     - switch.living_room_light
     - switch.bathroom_light
     - switch.dining_table_light
-    
-torrents:
-  name: Torrenty
-  icon: mdi:download-network
-  entities:
-    - sensor.torrents_down_speed
-    - sensor.torrents_status
-    - sensor.torrents_up_speed

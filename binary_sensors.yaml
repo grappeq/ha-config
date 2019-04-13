@@ -1,0 +1,6 @@
+- platform: mqtt
+  state_topic: "home/growbox"
+  name: growbox_door
+  payload_on: "open"
+  payload_off: "closed"
+  value_template: '{{ value_json["door"] }}'

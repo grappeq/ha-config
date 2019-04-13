@@ -30,7 +30,7 @@
 - alias: Po pojedynczym kliknięciu na przycisk zgaś/zaświeć światło w sypialni
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.switch_158d00016bdfb4
       click_type: single
@@ -40,7 +40,7 @@
 - alias: Po dłuższym kliknięciu na przycisk zgaś wszystkie światła
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.switch_158d00016bdfb4
       click_type: long_click_press

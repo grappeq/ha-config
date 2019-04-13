@@ -11,14 +11,6 @@
   value_template: '{{ value_json["humidity"] | round(0) }}'
 
 - platform: mqtt
-  state_topic: "home/growbox"
-  name: growbox_door
-  payload_on: "open"
-  payload_off: "closed"
-  device_class: opening
-  value_template: '{{ value_json["door"] }}'
-
-- platform: mqtt
   state_topic: "home/balcony/weather_station/sensor_data"
   name: weather_station_temperature
   unit_of_measurement: '°C'
@@ -54,13 +46,3 @@
     - light
     - conductivity
     - battery
-    
-- platform: deluge
-  host: 127.0.0.1
-  name: torrents
-  username: !secret deluge_username
-  password: !secret deluge_password
-  monitored_variables:
-    - 'current_status'
-    - 'download_speed'
-    - 'upload_speed'
